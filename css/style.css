@@ -1,0 +1,223 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Timmana&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Noto+Sans+JP&display=swap');
+
+
+.sans {
+  font-family: "Roboto", "Noto Sans JP", sans-serif;
+}
+
+.serif {
+  font-family: "Roboto", "Noto Serif JP", serif;
+}
+.zen-kaku {
+  font-family: "Zen Kaku Gothic New", "Noto Sans JP", sans-serif;
+}
+
+.timmana {
+  font-family: 'Timmana', sans-serif;
+}
+
+
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/* 横並びレイアウト */
+.split-layout {
+  display: flex;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  align-items: flex-start; /* 上揃えに変更 */
+}
+
+
+/* 左側の写真は可変 */
+.left-photo {
+  flex: 1;                /* 残りのスペースを全部使う */
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.left-photo img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* 右側のテキスト */
+.right-text {
+  width: 180px;            /* 右端の固定幅 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* 縦方向中央 */
+  align-items: flex-start;  /* 子要素を左揃えに変更 */
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0 10px;         /* 少し余白を追加 */
+}
+
+
+
+
+
+
+/* 名前 */
+.site-name {
+  font-size: 15px;
+  font-weight: bold;
+  color: #000;
+  margin: 0 0 20px 0; /* 上下のマージンだけ残す */
+  text-align: center; /* 万が一の中央揃え */
+  width: 100%;        /* 幅を親いっぱいにして中央揃えを確実に */
+}
+
+
+/* ナビゲーション */
+
+/* ナビは左揃え */
+.main-nav ul {
+  list-style: none;
+  padding-left: 20px; /* 左の余白を20pxに増やす */
+  margin: 0;
+  width: 100%;
+}
+
+
+.main-nav li {
+  margin-bottom: 5px;
+}
+
+.main-nav a {
+  text-decoration: none;
+  font-size: 15px;
+  color: #000;
+  transition: color 0.3s;
+}
+
+.main-nav a:hover {
+  color: #555;
+}
+
+
+
+/* WORKページ用：中央のWORK種類と右の作品を横並び */
+/* WORK種類と作品を左ナビ横に横並びにする */
+.work-container {
+  display: flex;              /* 横並び */
+  align-items: flex-start;    /* 上揃え */
+  flex: 1;                    /* 残りスペースを全部使う */
+  padding-left: 10px;         /* 左ナビとの余白 */
+  box-sizing: border-box;
+  
+}
+
+
+
+/* WORK種類 */
+/* 右側コンテンツのラッパー */
+.right-content {
+  flex: 1;                       
+  display: flex;
+  justify-content: center;   /* 横方向中央 */
+  align-items: flex-start;   /* 上揃え */
+  padding-left: 0;           /* 左ナビとの隙間は0に */
+  padding-top: 20px; /* 上のカードが隠れないように余白 */
+  box-sizing: border-box;
+}
+
+
+.work-category {
+  margin-top: 30px; /* 見出しが重ならないように */
+  font-size: 1.5rem;
+}
+
+/* 作品リスト（カードを中央揃え） */
+/* 作品リスト */
+.work-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;        
+  width: 100%;
+  max-width: 700px;   /* カードの最大幅を広く */
+  padding: 20px 10px;
+}
+
+/* 個別カード */
+.work-item {
+  background: #fff;
+  padding: 10px 20px;  /* 上下余白小さく */
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 100%;         /* max-width に従って広がる */
+}
+
+
+
+/* ホバー効果 */
+.work-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+/* タイトル */
+.work-item h2 {
+  font-size: 13px;             /* 文字小さく */
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+/* 詳細 */
+.work-item .details {
+  font-size: 11px;             /* 文字小さく */
+  color: #737373;
+  margin-bottom: 10px;
+}
+
+/* リンク */
+.work-item a {
+  font-size: 11px;             /* 文字小さく */
+  color: #001b92;
+  text-decoration: none;
+  float: right;
+}
+
+/* WORK種類リストの文字サイズを小さく */
+#work-types ul li {
+  font-size: 13px;   /* お好みで調整 */
+  margin-bottom: 5px;
+  cursor: pointer;
+  list-style: none;  /* 点も消す */
+}
+
+
+
+/* 脚本・演出作品の画像 */
+.work-item[data-type="story"] .work-img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* 舞台美術の画像 */
+.work-item[data-type="script"] .work-img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+

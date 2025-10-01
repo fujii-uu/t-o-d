@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- OGP・SNS -->
+<meta property="og:title" content="藤井憂憂 | Fujii Yuyu">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://uu-fujii.com/">
+<meta property="og:image" content="https://uu-fujii.com/img/top.png">
+<meta property="og:description" content="俳優 藤井憂憂の公式サイト">
+<meta property="og:site_name" content="藤井憂憂 | Fujii Yuyu">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="藤井憂憂 | Fujii Yuyu">
+<meta name="twitter:description" content="役者・藤井憂憂の公式サイト">
+<meta name="twitter:image" content="https://uu-fujii.com/img/top.png">
+
+
+  <!-- CSS・フォント -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+JP:wght@200..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poller+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nova+Round&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+
+
+  <!-- favicon・スマホ対応 -->
+  <link rel="icon" href="img/favicon.ico" type="image/png">
+  <!-- Web App manifest -->
+  <link rel="manifest" href="img/favicon/manifest.webmanifest?v=20250701">
+
+  <!-- iOS ホーム画面対応 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="藤井憂憂">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+
+<body class="page-3">
+
+
+
+<header class="web-header">
+  <div class="web-header-left">
+    <p class="web-name">Fujii Yuyu</p>
+    <a class="actor-page-link" href="actor.html">役者 藤井憂憂 についてはこちらから！</a>
+  </div>
+
+
+  <!-- カテゴリ検索ボタン -->
+<button class="category-button" id="categoryButton">カテゴリ検索</button>
+
+<!-- カテゴリ一覧メニュー（初期は非表示） -->
+<div id="categoryMenu">
+  <ul>
+    <li><a href="#" class="category-item" data-category="all">すべて</a></li>
+    <li><a href="#hito-sectio" class="category-item" data-category="peaple">ひと</a></li>
+    <li><a href="#" class="category-item" data-category="about">企業</a></li>
+  </ul>
+</div>
+
+
+  
+</header>
+
+    <img src="img/wave.svg" alt="波線" class="wave-line-img" />
+
+
+
+<h2 class="section-heading">これまでの制作事例</h2>
+
+
+
+<div class="image-row">
+  <div class="image-wrapper">
+    <a href="http://uu-fujii.com/" target="_blank">
+      <img src="img/fujii.png" alt="藤井憂憂" class="side-image" />
+    </a>
+    <p class="image-title">藤井憂憂</p>
+    <p class="image-credit">2025年6月　クレジット 藤井憂憂</p>
+  </div>
+
+  <div class="image-wrapper">
+    <a href="http://takahiro-yamanishi.com/" target="_blank">
+      <img src="img/yamanishi.png" alt="山西貴大" class="side-image" />
+    </a>
+    <p class="image-title">山西貴大</p>
+    <p class="image-credit">2025年6月　クレジット 山西貴大 様</p>
+  </div>
+</div>
+
+
+
+
+
+<footer class="site-footer">
+  <p>&copy; 2025 Yuyu Fujii</p>
+</footer>
+
+
+
+</body>
+
+<script>
+document.getElementById('categoryButton').addEventListener('click', () => {
+  const menu = document.getElementById('categoryMenu');
+  menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+});
+
+// カテゴリクリックで絞り込み（例）
+document.querySelectorAll('.category-item').forEach(item => {
+  item.addEventListener('click', e => {
+    e.preventDefault();
+    const category = item.dataset.category;
+    filterByCategory(category);
+    // メニューを閉じる
+    document.getElementById('categoryMenu').style.display = 'none';
+  });
+});
+
+// 例：カテゴリで絞り込む関数（サイト内要素のclassや属性で絞り込み）
+function filterByCategory(category) {
+  const items = document.querySelectorAll('.work-item'); // 例としてWORKの要素を絞り込み
+  if(category === 'all') {
+    items.forEach(el => el.style.display = 'flex');
+  } else {
+    items.forEach(el => {
+      if(el.classList.contains(category)) {
+        el.style.display = 'flex';
+      } else {
+        el.style.display = 'none';
+      }
+    });
+  }
+}
+
+</script>
+
+</html>
