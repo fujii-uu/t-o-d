@@ -236,10 +236,102 @@ html, body {
   display: none;
 }
 
+
+/* この写真専用のスタイル */
+.left-photo-about {
+  display: flex;
+  flex-direction: column;   /* 縦並び */
+  align-items: center;      /* 写真と文字を中央揃え */
+  justify-content: flex-start;
+}
+
+.left-photo-about img {
+  max-width: 1100px;  
+  width: auto;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  margin-bottom: 10px;  /* 写真と文字の間 */
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.left-photo-about .profile-name,
+.left-photo-about .profile-text {
+  text-align: center;   /* 文字も中央揃え */
+}
+
+
+
+
+
+
+.profile-name {
+  font-size: 24px;       /* 名前の文字サイズ */
+  font-weight: bold;
+  margin: 10px 0;        /* 上下余白 */
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+.profile-text {
+  font-size: 16px;       /* プロフィール本文の文字サイズ */
+  line-height: 1.6;
+  color: #333;
+  max-width: 500px;      /* 横幅制限 */
+  margin: 0 auto 20px;   /* 中央揃え＋下余白 */
+  text-align: left;
+}
+
+
+
 /* スマホ用 */
 /* スマホ用 */
 /* スマホ用 */
 @media (max-width: 768px) {
+/* 画像 */
+.left-photo-about {
+  position: absolute;
+  top: -10px; /* ヘッダーより10px上にずらす */
+  left: 5px !important;
+  width: 100%;
+  z-index: 5;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+
+.left-photo-about img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+.profile-text {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #333;
+  max-width: 90%;      /* 横幅制限 */
+  margin: 0 auto 20px; /* 中央揃え＋下余白 */
+  text-align: left !important; /* 左寄せに戻す */
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;  /* 高さを100%に */
+}
+
+
+  .profile-name {
+  font-size: 16px;       /* 名前の文字サイズ */
+  font-weight: bold;
+  margin: 10px 0;        /* 上下余白 */
+  font-family: 'Poppins', sans-serif;
+  text-align: left;
+}
+
+
 
   /* 共通デフォルト（黒） */
 .hamburger,
@@ -248,10 +340,16 @@ html, body {
 }
 
 /* トップページだけ白 */
+/* トップページだけ白＋シャドウ追加 */
 body.home .hamburger,
 body.home .site-name {
-  color: #fff;
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
 }
+
+
+
 
   .split-layout {
     flex-direction: column;      /* 縦並び */
@@ -532,7 +630,6 @@ body.home .site-name {
 
   /* スマホ用ナビ背景 */
   #mobile-nav {
-    background-color: rgba(255, 255, 255, 0.95);
     padding: 15px 20px;
     border-radius: 8px;
     position: absolute;
@@ -542,8 +639,8 @@ body.home .site-name {
     width: 65vw;
     max-width: 120px;
     box-sizing: border-box;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     z-index: 1001;
+    box-shadow: none;
   }
 
   #mobile-nav li {
@@ -577,6 +674,52 @@ body.home .site-name {
   display: inline-block;
   margin-left: -2px; /* 左に2pxずらす */
   padding-top: 15px;
+}
+
+
+
+#scrollToTop {
+  position: fixed;
+  bottom: 30px;       /* 下からの距離 */
+  right: 30px;        /* 右からの距離 */
+  display: none;      /* 初期は非表示 */
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 1000;
+  transition: opacity 0.3s;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.6); /* ←文字に影 */
+}
+
+body.home .site-name {
+    color: #fff;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+      box-shadow: none; /* もし影も消したければ */
+}
+
+#scrollToTop:hover {
+  background-color: #555;
+}
+
+/* トップページのハンバーガー文字＆シャドウ消す */
+body.home .hamburger,
+body.home .site-name {
+    border-radius: 0;  /* 角丸も消したければ */
+}
+
+.hamburger{
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+  box-shadow: none !important;              /* ボックスシャドウを完全に消す */
+}
+}
+
+/* スマホ用ナビ背景の影を消す */
+#mobile-nav {
+    box-shadow: none;  /* 影を消す */
 }
 
 

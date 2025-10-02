@@ -36,7 +36,7 @@
       </ul>
     </li>
         <li>
-      <a href="mailto:example@example.com">contact</a>
+      <a href="mailto:ntaoda@gmail.com">contact</a>
     </li>
     <!-- Instagramアイコン -->
 <li class="social-center">
@@ -62,6 +62,15 @@
         <li><a href="index.html">top</a></li>
         <li><a href="#" id="work-link">work</a></li>
         <li><a href="about.html">about</a></li>
+        <li>
+         <a href="mailto:ntaoda@gmail.com">contact</a>
+        </li>
+    <!-- Instagramアイコン -->
+        <li class="social-center">
+         <a href="https://x.com/__t_o_d__?s=11" target="_blank">
+          <img src="img/X-icon.svg" alt="X" class="social-icon">
+         </a>
+        </li>
       </ul>
     </nav>
 
@@ -92,17 +101,18 @@
         <p class="details">下北沢OFF・OFFシアター　2025年8月15日(金)～8月17日(日)</p>
       </div>
 
+            <div class="work-item" data-type="stage">
+        <h2>アマヤドリ雨天決行season7「取り戻せ、カラー」</h2>
+        <p class="details">吉祥寺シアター　2025年1月24日(金)～1月26日(日)</p>
+        <a href="https://amayadori.co.jp/archives/27549" target="_blank">公式サイト</a>
+      </div>
+
       <div class="work-item" data-type="stage">
         <h2>アマヤドリ本公演　「牢獄の森」「うれしい悲鳴」​舞台監督助手</h2>
         <p class="details">吉祥寺シアター　2024年 8月17日(土)～8月26日(月)</p>
         <a href="https://amayadori.co.jp/archives/26849" target="_blank">公式サイト</a>
       </div>
 
-      <div class="work-item" data-type="stage">
-        <h2>アマヤドリ雨天決行season7「取り戻せ、カラー」</h2>
-        <p class="details">吉祥寺シアター　2025年1月24日(金)～1月26日(日)</p>
-        <a href="https://amayadori.co.jp/archives/27549" target="_blank">公式サイト</a>
-      </div>
 
       <div class="work-item" data-type="stage">
         <h2>アマヤドリ本公演　「牢獄の森」 舞台監督助手</h2>
@@ -170,11 +180,11 @@
   <img class="work-img" src="img/konokuraino.jpg" alt="このくらいのLANGIT">
   <h2>このくらいのLANGIT</h2>
   <p class="details">
-    メガジョッキ公演<br>
+    大学卒業公演<br>
     日付: 2019年12月<br>
     場所: 広島市東区民文化センター
   </p>
-  <a href="https://megazyokki.stage.corich.jp/stage/102509" target="_blank">公式サイト</a>
+  <a href="" target="_blank"></a>
 </div>
 
 
@@ -242,9 +252,29 @@
   </div>
 </div>
 
+<!-- ワークページの最後あたりに置く -->
+<button id="scrollToTop" title="トップへ">△</button>
+
+
 
 
 <script>
+  // スクロール検知
+window.addEventListener('scroll', function() {
+  const btn = document.getElementById('scrollToTop');
+  if (window.scrollY > 200) { // 200px以上スクロールしたら表示
+    btn.style.display = 'block';
+  } else {
+    btn.style.display = 'none';
+  }
+});
+
+// クリックで上へスクロール
+document.getElementById('scrollToTop').addEventListener('click', function() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+
 document.getElementById('work-link').addEventListener('click', function(e) {
   e.preventDefault();
   const types = document.getElementById('work-types');
