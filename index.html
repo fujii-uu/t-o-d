@@ -44,6 +44,8 @@
   <!-- フォント -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+JP:wght@200..900&family=Nova+Round&display=swap" rel="stylesheet">
 
   <!-- favicon & manifest -->
@@ -71,12 +73,91 @@
         </ul>
       </nav>
     </div>
+<body class="home">
 
+    <div class="hamburger" id="hamburger">
+  ☰
+
+  <nav class="main-nav" id="mobile-nav">
+  <ul>
+    <li><a href="index.html">top</a></li>
+    <li><a href="about.html">about</a></li>
+    <li>
+     <!-- モバイル用 -->
+<a href="#" id="mobile-work-link">work</a>
+      <ul class="work-types" id="mobile-work-types" style="display:none;">
+        <li data-type="stage">舞台監督</li>
+        <li data-type="direction">演出部</li>
+        <li data-type="script">舞台美術</li>
+        <li data-type="story">脚本・演出作品</li>
+      </ul>
+    </li>
+        <li>
+      <a href="mailto:example@example.com">contact</a>
+    </li>
+    <!-- Instagramアイコン -->
+<li class="social-center">
+  <a href="https://x.com/__t_o_d__?s=11" target="_blank">
+    <img src="img/X-icon.svg" alt="X" class="social-icon">
+  </a>
+</li>
+
+
+  </ul>
+</nav>
+</div>
     <!-- 右側：写真 -->
     <div class="left-photo">
       <img src="img/top.jpg" alt="TOD メイン写真">
     </div>
   </div>
+
+  <script>
+
+
+// ハンバーガーを押したらモバイルナビを表示/非表示
+document.getElementById('hamburger').addEventListener('click', function () {
+  const mobileNav = document.getElementById('mobile-nav');
+  mobileNav.classList.toggle('active'); // activeクラスを付け外し
+});
+
+// モバイル版 WORK メニューの開閉
+document.getElementById('mobile-work-link').addEventListener('click', function (e) {
+  e.preventDefault();
+  const types = document.getElementById('mobile-work-types');
+  types.style.display = (types.style.display === 'block') ? 'none' : 'block';
+});
+
+
+document.getElementById('work-link').addEventListener('click', function(e) {
+  e.preventDefault();
+  const types = document.getElementById('work-types');
+  types.style.display = (types.style.display === 'block') ? 'none' : 'block';
+});
+
+// WORK種類のフィルター
+// ハンバーガーメニューを押したらモバイルナビを表示
+document.getElementById('hamburger').addEventListener('click', function() {
+  const mobileNav = document.getElementById('mobile-nav');
+  mobileNav.classList.toggle('active'); // activeクラスを付け外し
+});
+
+// PC版
+document.getElementById('pc-work-link').addEventListener('click', function(e) {
+  e.preventDefault();
+  const types = document.getElementById('work-types');
+  types.style.display = (types.style.display === 'block') ? 'none' : 'block';
+});
+
+// モバイル版はそのまま
+document.getElementById('mobile-work-link').addEventListener('click', function(e) {
+  e.preventDefault();
+  const types = document.getElementById('mobile-work-types');
+  types.style.display = (types.style.display === 'block') ? 'none' : 'block';
+});
+
+
+</script>
 
 </body>
 

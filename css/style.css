@@ -74,7 +74,8 @@ html, body {
 
 /* 名前 */
 .site-name {
-  font-size: 15px;
+  font-size: 17px;
+    font-family: 'Poppins', sans-serif; /* フォント指定 */
   font-weight: bold;
   color: #000;
   margin: 0 0 20px 0; /* 上下のマージンだけ残す */
@@ -99,6 +100,7 @@ html, body {
 }
 
 .main-nav a {
+      font-family: 'Poppins', sans-serif; /* フォント指定 */
   text-decoration: none;
   font-size: 15px;
   color: #000;
@@ -239,9 +241,40 @@ html, body {
 /* スマホ用 */
 @media (max-width: 768px) {
 
+  /* 共通デフォルト（黒） */
+.hamburger,
+.site-name {
+  color: #000;
+}
+
+/* トップページだけ白 */
+body.home .hamburger,
+body.home .site-name {
+  color: #fff;
+}
+
   .split-layout {
-    flex-direction: column;
+    flex-direction: column;      /* 縦並び */
+    align-items: flex-start;     /* 左寄せ */
   }
+
+.left-photo {
+  order: -1;
+  width: calc(100% - 20px); /* 左右マージン 10px ×2 を引く */
+  margin: 10px;             /* 上下左右10px */
+  display: block;
+  padding: 0;
+}
+
+
+  .right-text {
+    width: 100%;
+    max-width: none;
+    align-items: flex-start;     /* 左寄せ */
+    padding: 0 10px;
+    margin-top: 10px;            /* 写真との間隔調整 */
+  }
+
 
   /* 名前（中央上部に固定） */
   .site-name {
@@ -253,7 +286,9 @@ html, body {
     font-size: 18px;
     text-align: center;
     z-index: 1000;
+    color: #000000;
   }
+
 
   /* ハンバーガーメニュー（右上固定） */
   .hamburger {
@@ -263,6 +298,7 @@ html, body {
     display: block;
     font-size: 28px;
     z-index: 1001;
+    color: #000000;
   }
 
   /* メインナビ非表示／表示切替 */
@@ -307,20 +343,13 @@ html, body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start; /* 左揃え */
+  align-items: center;         /* ← 中央揃え */
     width: 100%;
     margin-top: 0;
     padding-left: 0;
-    box-sizing: border-box;
   }
 
-  .right-text {
-    width: 100%;
-    max-width: none;
-    align-items: flex-start; /* 左揃え */
-    padding: 0 10px;
-  }
-
+  
   .work-category {
     text-align: left;        /* 左寄せ */
     width: 100%;
@@ -435,24 +464,7 @@ html, body {
     text-align: center;
     float: none;
   }
-  .right-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center; /* 中央揃え */
-    width: 100%;         /* ←追加 */
-    margin-top: 0;
-    padding-left: 0;
-    box-sizing: border-box;
-  }
 
-    .right-text {
-    width: 100%;       /* ←ここで必ず上書き */
-    max-width: none;
-    align-items: center; /* 中央揃えに変更 */
-    padding: 0 10px;
-  }
 
     .work-item .details,
   .work-item a {
