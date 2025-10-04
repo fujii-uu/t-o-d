@@ -31,13 +31,8 @@
     <li><a href="work.html">work</a></li>
     <li><a href="about.html">about</a></li>
      <!-- モバイル用 -->
-<a href="#" id="mobile-work-link">work</a>
-      <ul class="work-types" id="mobile-work-types" style="display:none;">
-        <li data-type="stage">舞台監督</li>
-        <li data-type="direction">演出部</li>
-        <li data-type="script">舞台美術</li>
-        <li data-type="story">脚本・演出作品</li>
-      </ul>
+
+
     </li>
         <li>
       <a href="mailto:ntaoda@gmail.com">contact</a>
@@ -261,7 +256,6 @@
 <button id="scrollToTop" title="トップへ">△</button>
 
 
-
 <script>
   // スクロール検知
   window.addEventListener('scroll', function() {
@@ -304,7 +298,7 @@
     });
   }
 
-  // ハンバーガーメニューの開閉
+  // ハンバーガーメニューの開閉 & モバイルWORK太字
   document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.getElementById('hamburger');
     const mobileNav = document.getElementById('mobile-nav');
@@ -316,8 +310,26 @@
         mobileNav.style.display = (mobileNav.style.display === 'none' || mobileNav.style.display === '') ? 'flex' : 'none';
       });
     }
+
+    // --- モバイルWORKリンクを太字にする ---
+    const mobileWorkNavLink = document.querySelector('#mobile-nav a[href="work.html"]');
+    if (mobileWorkNavLink) {
+      // ページ読み込み時に現在ページなら太字
+      if (window.location.pathname.includes('work.html')) {
+        mobileWorkNavLink.style.fontWeight = '700';
+      }
+
+      // クリック時に太字
+      mobileWorkNavLink.addEventListener('click', () => {
+        document.querySelectorAll('#mobile-nav a').forEach(link => {
+          link.style.fontWeight = 'normal';
+        });
+        mobileWorkNavLink.style.fontWeight = '700';
+      });
+    }
   });
 </script>
+
 
 
 </body>
