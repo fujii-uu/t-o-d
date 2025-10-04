@@ -764,12 +764,16 @@ body.home .site-name {
 body.home .hamburger,
 body.home .site-name {
     border-radius: 0;  /* 角丸も消したければ */
+        top: 5px;       /* 黒ハンバーガーと同じ */
+    right: 70px;    /* 黒ハンバーガーと同じ */
 }
 
 .hamburger{
     text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
   box-shadow: none !important;              /* ボックスシャドウを完全に消す */
 }
+
+
 
 .main-nav a.active {
   font-weight: 700; /* 太字にする */
