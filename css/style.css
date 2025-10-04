@@ -36,23 +36,45 @@ html, body {
   height: 100vh;
   margin: 0;
   padding: 0;
-  align-items: flex-start; /* 上揃えに変更 */
 }
 
 
 /* 左側の写真は可変 */
 .left-photo {
-  flex: 1;                /* 残りのスペースを全部使う */
+  flex: 1;
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: flex-start !important; /* 上揃え */
+  justify-content: flex-end; /* 右寄せ */
+  padding: 0;               /* 念のため */
+  margin: 0;                /* 念のため */
 }
 
 .left-photo img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
   display: block;
+  margin-top: 0 !important;                /* 完全に余白を消す */
+  object-fit: contain !important;
+  vertical-align: top;      /* 画像を上に揃える */
+  width: 100%;
+  margin-left: 0;
+  padding-left: 0;
+}
+.left-photo-top {
+  flex: 1;
+  display: flex;
+  align-items: flex-start !important; /* 上揃え */
+  justify-content: flex-end; /* 右寄せ */
+  padding: 0;               /* 念のため */
+  margin: 0;                /* 念のため */
+}
+
+.left-photo-top img {
+  display: block;
+  margin-top: 0 !important;                /* 完全に余白を消す */
+  object-fit: contain !important;
+  vertical-align: top;      /* 画像を上に揃える */
+  width: 100%;
+  margin-left: 0;
+  padding-left: 0;
 }
 
 /* 右側のテキスト */
@@ -92,11 +114,15 @@ html, body {
   padding-left: 20px; /* 左の余白を20pxに増やす */
   margin: 0;
   width: 100%;
+
+     border-radius: 10px; /* 10pxだけ角を丸める */
+
 }
 
 
 .main-nav li {
   margin-bottom: 5px;
+
 }
 
 .main-nav a {
@@ -105,6 +131,12 @@ html, body {
   font-size: 15px;
   color: #000;
   transition: color 0.3s;
+  text-shadow: none;
+    padding-top: 0px;
+    padding-bottom: 3px;
+    margin-right:10px;
+    margin-left: 10px;
+
 }
 
 .main-nav a:hover {
@@ -179,6 +211,7 @@ html, body {
   font-size: 13px;             /* 文字小さく */
   font-weight: 400;
   margin-bottom: 8px;
+    font-family: 'M PLUS 1p', sans-serif;
 }
 
 /* 詳細 */
@@ -186,6 +219,7 @@ html, body {
   font-size: 11px;             /* 文字小さく */
   color: #737373;
   margin-bottom: 10px;
+    font-family: 'M PLUS 1p', sans-serif;
 }
 
 /* リンク */
@@ -237,24 +271,25 @@ html, body {
 }
 
 
-/* この写真専用のスタイル */
+/* 写真ラッパー */
 .left-photo-about {
   display: flex;
-  flex-direction: column;   /* 縦並び */
-  align-items: center;      /* 写真と文字を中央揃え */
-  justify-content: flex-start;
+  flex-direction: column;    /* 縦並び */
+  justify-content: flex-start; /* 上揃え */
+  align-items: center;       /* 横方向中央 */
+  margin-top: 3%;
+
+  padding: 0;
+  flex: 1;                   /* 残り幅を全部使う */
 }
 
+/* 写真 */
 .left-photo-about img {
-  max-width: 1100px;  
-  width: auto;
-  height: auto;
-  display: block;
-  object-fit: contain;
-  margin-bottom: 10px;  /* 写真と文字の間 */
-  margin-top: 10px;
-  margin-right: 10px;
+  width: 450px;      /* 好きな幅 */
+  max-width:
+   /* 位置調整用 */
 }
+
 
 .left-photo-about .profile-name,
 .left-photo-about .profile-text {
@@ -267,20 +302,39 @@ html, body {
 
 
 .profile-name {
-  font-size: 24px;       /* 名前の文字サイズ */
+  font-size: 20px;       /* 名前の文字サイズ */
   font-weight: bold;
-  margin: 10px 0;        /* 上下余白 */
+  margin-top: 25px;        /* 上下余白 */
   font-family: 'Poppins', sans-serif;
   text-align: center;
+  margin-bottom: 0%;
+  padding-bottom: 0%;
 }
 
 .profile-text {
-  font-size: 16px;       /* プロフィール本文の文字サイズ */
+  font-size: 13px;       /* プロフィール本文の文字サイズ */
   line-height: 1.6;
   color: #333;
   max-width: 500px;      /* 横幅制限 */
-  margin: 0 auto 20px;   /* 中央揃え＋下余白 */
   text-align: left;
+    font-family: 'M PLUS 1p', sans-serif;
+    margin-top: 10px;
+    padding: 0;
+}
+
+
+/* PC用 */
+@media screen and (min-width: 768px) {
+  .social-center  {
+    width: 20px; /* 好きなサイズに */
+    height: auto;
+    margin-top: 10px;
+  }
+
+.left-photo-mvai{
+  display:none;
+
+}
 }
 
 
@@ -289,24 +343,28 @@ html, body {
 /* スマホ用 */
 /* スマホ用 */
 @media (max-width: 768px) {
+
+  .social-center .social-icon {
+    display:none;
+  }
 /* 画像 */
-.left-photo-about {
-  position: absolute;
-  top: -10px; /* ヘッダーより10px上にずらす */
-  left: 5px !important;
-  width: 100%;
-  z-index: 5;
-  margin: 0 !important;
-  padding: 0 !important;
-}
+  .left-photo-about {
+    position: absolute;
+    top: -10px;
+    left: 0;         /* 5px → 0 に変更 */
+    width: 100%;      /* 画面幅いっぱい */
+    margin: 0 !important;
+    padding: 0 !important;
+  }
 
-
-.left-photo-about img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  display: block;
-}
+  .left-photo-about img {
+    width: 100%;
+    max-width: 100%;  /* 念のため */
+    height: auto;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 10px;
+  }
 .profile-text {
   font-size: 12px;
   line-height: 1.6;
@@ -349,22 +407,7 @@ body.home .site-name {
 }
 
 
-
-
-  .split-layout {
-    flex-direction: column;      /* 縦並び */
-    align-items: flex-start;     /* 左寄せ */
-  }
-
-.left-photo {
-  order: -1;
-  width: calc(100% - 20px); /* 左右マージン 10px ×2 を引く */
-  margin: 10px;             /* 上下左右10px */
-  display: block;
-  padding: 0;
-}
-
-
+ 
   .right-text {
     width: 100%;
     max-width: none;
@@ -399,6 +442,10 @@ body.home .site-name {
     color: #000000;
   }
 
+  body.subpage .hamburger {
+  color: black;
+  text-shadow: none; /* 影なし */
+}
   /* メインナビ非表示／表示切替 */
   .main-nav {
     display: none;
@@ -464,38 +511,73 @@ body.home .site-name {
     text-align: center;
   }
 
-  /* スマホ用ナビ背景 */
+#mobile-nav li.social-center {
+  display: flex;
+  justify-content: center; /* 中央寄せ */
+}
+
+
+
+  /* ナビ背景 */
   #mobile-nav {
     background-color: rgba(255, 255, 255, 0.95);
-    padding: 15px 20px;
     border-radius: 8px;
     position: absolute;
-    top: 50px;
+    top: 45px;
     left: 50%;
     transform: translateX(-50%);
-    width: 90vw;
-    max-width: 360px;
+
     box-sizing: border-box;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     z-index: 1001;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    text-align: center;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center; /* 中央揃え */
+    width: 13vh;
+    margin-top: 10px;
   }
-
-  #mobile-nav li {
-    margin-bottom: 10px;
-  }
-
+  /* ul 縦並び・中央揃え */
   #mobile-nav ul {
-    text-align: left;
-    padding-left: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 中央揃え */
   }
 
+  /* li は上下マージンだけ */
+#mobile-nav li.social-center {
+  display: flex !important;       /* 必須 */
+  flex-direction: row !important; /* 横並び */
+  justify-content: flex-start;    /* 左寄せ */
+  align-items: center;
+  gap: 5px;                       /* アイコン間の隙間 */
+}
+
+
+  /* リンク文字 */
   #mobile-nav a {
     display: block;
-    text-align: left;
-    font-size: 16px;
+    margin: 5px 0;
   }
 
+.social-center {
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+  transform: translateY(-12px); /* 上に5px移動 */
 }
+
+
+  
+
+
+}
+
+
+
 @media (max-width: 768px) {
   .split-layout {
     flex-direction: column;
@@ -584,6 +666,7 @@ body.home .site-name {
     width: 100%;
     margin: 40px 0 10px 0;
     font-size: 1.0rem;
+      font-family: 'M PLUS 1p', sans-serif;
   }
   
   .work-item {
@@ -628,35 +711,7 @@ body.home .site-name {
     font-weight: bold;
   }
 
-  /* スマホ用ナビ背景 */
-  #mobile-nav {
-    padding: 15px 20px;
-    border-radius: 8px;
-    position: absolute;
-    top: 0px;
-    left: 120%;
-    transform: translateX(-50%);
-    width: 65vw;
-    max-width: 120px;
-    box-sizing: border-box;
-    z-index: 1001;
-    box-shadow: none;
-  }
 
-  #mobile-nav li {
-    margin-bottom: 10px;
-  }
-
-  #mobile-nav ul {
-    text-align: left;
-    padding-left: 10px;
-  }
-
-  #mobile-nav a {
-    display: block;
-    text-align: left;
-    font-size: 16px;
-  }
 
 /* li自体を中央寄せ */
 #mobile-nav li.social-center {
@@ -715,14 +770,56 @@ body.home .site-name {
     text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
   box-shadow: none !important;              /* ボックスシャドウを完全に消す */
 }
+
+.main-nav a.active {
+  font-weight: 700; /* 太字にする */
+}
+  .split-layout {
+    position: relative; /* 写真の絶対位置指定の基準にする */
+  }
+
+  .left-photo {
+    position: absolute;  /* 重ねるために絶対位置指定 */
+    top: 0;              /* ページ最上部に配置 */
+    left: 0;
+    width: 100%;
+    z-index: -1;         /* テキストより後ろに置く（必要に応じて調整） */
+  }
+
+  .left-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .right-text {
+    position: relative;
+    z-index: 2; /* 写真の上に出す */
+  }
+.left-photo-mvai {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60vh;          /* 高さを画面の60%くらいに（好みで調整） */
+  overflow: hidden;      /* はみ出した部分をカット */
+  z-index: -1;
+    height: 100vh;      /* 高さを画面いっぱいに */
 }
 
-/* スマホ用ナビ背景の影を消す */
-#mobile-nav {
-    box-shadow: none;  /* 影を消す */
+.left-photo-mvai img {
+  width: 100%;           /* 画面より大きく表示（例：120%） */
+  height: auto;
+  display: block;
+  object-fit: cover;     /* 枠いっぱいに収めつつカット */
+  object-position: center top; /* 上を基準に切り取り */
+}
+
+
 }
 
 
 
 
-}
+
+

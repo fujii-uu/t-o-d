@@ -69,16 +69,19 @@
       <h1 class="site-name">TAODA NAOKI</h1>
       <nav class="main-nav">
         <ul>
+          <li><a href="index.html">top</a></li>
           <li><a href="work.html">work</a></li>
           <li><a href="about.html">about</a></li>
-                  <li>
 <li><a href="mailto:ntaoda@gmail.com">contact</a></li>
-
-
         </ul>
       </nav>
     </div>
 
+<li class="social-center">
+  <a href="https://x.com/__t_o_d__?s=11" target="_blank">
+    <img src="img/X-icon.svg" alt="X" class="social-icon">
+  </a>
+</li>
 
     <div class="hamburger" id="hamburger">
   ☰
@@ -106,58 +109,88 @@
   
   <h1 class="profile-name">太尾田尚希　TAODA NAOKI</h1>
   <p class="profile-text">
-    1998年10月5日月曜日うまれ。出身地は広島県。<br>
-    中学時代は卓球部、高校時代は弓道部、大学時代は演劇部に所属。
+    1998年10月5日(月曜日)生まれ。広島県出身。<br>
+    中学では卓球部、高校では弓道部、大学では演劇部に所属。
   </p>
 </div>
 
- 
-  <script>
+<script>
+// スクロール検知
+window.addEventListener('scroll', function() {
+  const btn = document.getElementById('scrollToTop');
+  if(btn) btn.style.display = (window.scrollY > 200) ? 'block' : 'none';
+});
 
+// トップへスクロール
+const scrollBtn = document.getElementById('scrollToTop');
+if(scrollBtn){
+  scrollBtn.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
 
-// ハンバーガーを押したらモバイルナビを表示/非表示
-document.getElementById('hamburger').addEventListener('click', function () {
+// ハンバーガーメニュー
+document.addEventListener('DOMContentLoaded', () => {
+  const hamburger = document.getElementById('hamburger');
   const mobileNav = document.getElementById('mobile-nav');
-  mobileNav.classList.toggle('active'); // activeクラスを付け外し
+
+  if (hamburger && mobileNav) {
+    mobileNav.style.display = 'none';
+    hamburger.addEventListener('click', () => {
+      mobileNav.style.display = (mobileNav.style.display === 'none' || mobileNav.style.display === '') ? 'flex' : 'none';
+    });
+  }
+
+  // WORKページ用の要素があれば処理
+  const pcWorkLink = document.getElementById('work-link');
+  const workTypes = document.getElementById('work-types');
+  if(pcWorkLink && workTypes){
+    pcWorkLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      workTypes.style.display = (workTypes.style.display === 'block') ? 'none' : 'block';
+    });
+
+    document.querySelectorAll('#work-types li').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const type = btn.getAttribute('data-type');
+        document.querySelectorAll('.work-item, .work-category').forEach(el => {
+          if(el.getAttribute('data-type') === type || type === 'all'){
+            el.style.display = 'block';
+          } else {
+            el.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  // モバイル版 WORKがあれば
+  const mobileWorkLink = document.getElementById('mobile-work-link');
+  const mobileWorkTypes = document.getElementById('mobile-work-types');
+  if(mobileWorkLink && mobileWorkTypes){
+    mobileWorkLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      mobileWorkTypes.style.display = (mobileWorkTypes.style.display === 'block') ? 'none' : 'block';
+    });
+  }
 });
 
-// モバイル版 WORK メニューの開閉
-document.getElementById('mobile-work-link').addEventListener('click', function (e) {
-  e.preventDefault();
-  const types = document.getElementById('mobile-work-types');
-  types.style.display = (types.style.display === 'block') ? 'none' : 'block';
+document.addEventListener('DOMContentLoaded', () => {
+  // 現在のページのファイル名を取得
+  const currentPage = location.pathname.split("/").pop();
+
+  // ナビ内のリンクを取得
+  const navLinks = document.querySelectorAll('.main-nav a');
+
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if(href === currentPage){
+      link.classList.add('active'); // 現在のページなら active クラス追加
+    }
+  });
 });
-
-
-document.getElementById('work-link').addEventListener('click', function(e) {
-  e.preventDefault();
-  const types = document.getElementById('work-types');
-  types.style.display = (types.style.display === 'block') ? 'none' : 'block';
-});
-
-// WORK種類のフィルター
-// ハンバーガーメニューを押したらモバイルナビを表示
-document.getElementById('hamburger').addEventListener('click', function() {
-  const mobileNav = document.getElementById('mobile-nav');
-  mobileNav.classList.toggle('active'); // activeクラスを付け外し
-});
-
-// PC版
-document.getElementById('pc-work-link').addEventListener('click', function(e) {
-  e.preventDefault();
-  const types = document.getElementById('work-types');
-  types.style.display = (types.style.display === 'block') ? 'none' : 'block';
-});
-
-// モバイル版はそのまま
-document.getElementById('mobile-work-link').addEventListener('click', function(e) {
-  e.preventDefault();
-  const types = document.getElementById('mobile-work-types');
-  types.style.display = (types.style.display === 'block') ? 'none' : 'block';
-});
-
-
 </script>
+
 
 </body>
 

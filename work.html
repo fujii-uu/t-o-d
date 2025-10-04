@@ -7,7 +7,11 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
 
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+JP:wght@200..900&family=Nova+Round&display=swap" rel="stylesheet">
 
 
 </head>
@@ -24,8 +28,8 @@
   <nav class="main-nav" id="mobile-nav">
   <ul>
     <li><a href="index.html">top</a></li>
+    <li><a href="work.html">work</a></li>
     <li><a href="about.html">about</a></li>
-    <li>
      <!-- モバイル用 -->
 <a href="#" id="mobile-work-link">work</a>
       <ul class="work-types" id="mobile-work-types" style="display:none;">
@@ -56,11 +60,12 @@
 
 
 
+
     <nav class="main-nav">
     
       <ul>
         <li><a href="index.html">top</a></li>
-        <li><a href="#" id="work-link">work</a></li>
+        <li><a href="work.html">work</a></li>
         <li><a href="about.html">about</a></li>
         <li>
          <a href="mailto:ntaoda@gmail.com">contact</a>
@@ -92,12 +97,12 @@
 
       <h3 class="work-category" data-type="stage">舞台監督</h3>
       <div class="work-item" data-type="stage">
-        <h2>大ガガ＃３「ゾンビ（ともだち）」</h2>
+        <h2>ガガ 大ガガ＃３「ゾンビ（ともだち）」</h2>
         <p class="details">早稲田小劇場どらま館　2025年8月22日(金)～8月25日(月)</p>
       </div>
 
       <div class="work-item" data-type="stage">
-        <h2>第二回本公演「どうか孤独を愛してくれ」</h2>
+        <h2>ナキワスレ第二回本公演「どうか孤独を愛してくれ」</h2>
         <p class="details">下北沢OFF・OFFシアター　2025年8月15日(金)～8月17日(日)</p>
       </div>
 
@@ -257,70 +262,63 @@
 
 
 
-
 <script>
   // スクロール検知
-window.addEventListener('scroll', function() {
-  const btn = document.getElementById('scrollToTop');
-  if (window.scrollY > 200) { // 200px以上スクロールしたら表示
-    btn.style.display = 'block';
-  } else {
-    btn.style.display = 'none';
+  window.addEventListener('scroll', function() {
+    const btn = document.getElementById('scrollToTop');
+    btn.style.display = (window.scrollY > 200) ? 'block' : 'none';
+  });
+
+  // クリックで上へスクロール
+  document.getElementById('scrollToTop').addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // PC版 WORK開閉
+  const pcWorkLink = document.getElementById('work-link');
+  if (pcWorkLink) {
+    pcWorkLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      const types = document.getElementById('work-types');
+      types.style.display = (types.style.display === 'block') ? 'none' : 'block';
+    });
   }
-});
 
-// クリックで上へスクロール
-document.getElementById('scrollToTop').addEventListener('click', function() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-
-document.getElementById('work-link').addEventListener('click', function(e) {
-  e.preventDefault();
-  const types = document.getElementById('work-types');
-  types.style.display = (types.style.display === 'block') ? 'none' : 'block';
-});
-
-// WORK種類のフィルター
-const workTypeButtons = document.querySelectorAll('#work-types li');
-
-workTypeButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const type = btn.getAttribute('data-type');
-
-    // カードと見出しを一緒に切り替え
-    document.querySelectorAll('.work-item, .work-category').forEach(el => {
-      if(el.getAttribute('data-type') === type || type === 'all'){
-        el.style.display = 'block';
-      } else {
-        el.style.display = 'none';
-      }
+  // WORK種類のフィルター
+  document.querySelectorAll('#work-types li').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const type = btn.getAttribute('data-type');
+      document.querySelectorAll('.work-item, .work-category').forEach(el => {
+        el.style.display = (el.getAttribute('data-type') === type || type === 'all') ? 'block' : 'none';
+      });
     });
   });
-});
 
-// ハンバーガーメニューを押したらモバイルナビを表示
-document.getElementById('hamburger').addEventListener('click', function() {
-  const mobileNav = document.getElementById('mobile-nav');
-  mobileNav.classList.toggle('active'); // activeクラスを付け外し
-});
+  // モバイル版 WORK開閉
+  const mobileWorkLink = document.getElementById('mobile-work-link');
+  if (mobileWorkLink) {
+    mobileWorkLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      const types = document.getElementById('mobile-work-types');
+      types.style.display = (types.style.display === 'block') ? 'none' : 'block';
+    });
+  }
 
-// PC版
-document.getElementById('pc-work-link').addEventListener('click', function(e) {
-  e.preventDefault();
-  const types = document.getElementById('work-types');
-  types.style.display = (types.style.display === 'block') ? 'none' : 'block';
-});
+  // ハンバーガーメニューの開閉
+  document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
 
-// モバイル版はそのまま
-document.getElementById('mobile-work-link').addEventListener('click', function(e) {
-  e.preventDefault();
-  const types = document.getElementById('mobile-work-types');
-  types.style.display = (types.style.display === 'block') ? 'none' : 'block';
-});
+    if (hamburger && mobileNav) {
+      mobileNav.style.display = 'none'; // 初期非表示
 
-
+      hamburger.addEventListener('click', () => {
+        mobileNav.style.display = (mobileNav.style.display === 'none' || mobileNav.style.display === '') ? 'flex' : 'none';
+      });
+    }
+  });
 </script>
+
 
 </body>
 </html>

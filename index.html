@@ -104,54 +104,75 @@
     <div class="left-photo">
       <img src="img/top.jpg" alt="TOD メイン写真">
     </div>
+        <div class="left-photo-mvai">
+      <img src="img/top-2.jpg" alt="TOD メイン写真２">
+    </div>
+    
   </div>
 
   <script>
+document.addEventListener('DOMContentLoaded', () => {
 
+  // 1. スクロールトップボタン
+  const scrollBtn = document.getElementById('scrollToTop');
+  if(scrollBtn){
+    window.addEventListener('scroll', () => {
+      scrollBtn.style.display = (window.scrollY > 200) ? 'block' : 'none';
+    });
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
-// ハンバーガーを押したらモバイルナビを表示/非表示
-document.getElementById('hamburger').addEventListener('click', function () {
+  // 2. ハンバーガーメニュー
+  const hamburger = document.getElementById('hamburger');
   const mobileNav = document.getElementById('mobile-nav');
-  mobileNav.classList.toggle('active'); // activeクラスを付け外し
+  if(hamburger && mobileNav){
+    mobileNav.style.display = 'none';
+    hamburger.addEventListener('click', () => {
+      mobileNav.style.display = (mobileNav.style.display === 'none' || mobileNav.style.display === '') ? 'flex' : 'none';
+    });
+  }
+
+  // 3. WORKページ PC版
+  const pcWorkLink = document.getElementById('work-link');
+  const workTypes = document.getElementById('work-types');
+  if(pcWorkLink && workTypes){
+    pcWorkLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      workTypes.style.display = (workTypes.style.display === 'block') ? 'none' : 'block';
+    });
+    document.querySelectorAll('#work-types li').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const type = btn.getAttribute('data-type');
+        document.querySelectorAll('.work-item, .work-category').forEach(el => {
+          el.style.display = (el.getAttribute('data-type') === type || type === 'all') ? 'block' : 'none';
+        });
+      });
+    });
+  }
+
+  // 4. WORKページ モバイル版
+  const mobileWorkLink = document.getElementById('mobile-work-link');
+  const mobileWorkTypes = document.getElementById('mobile-work-types');
+  if(mobileWorkLink && mobileWorkTypes){
+    mobileWorkLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      mobileWorkTypes.style.display = (mobileWorkTypes.style.display === 'block') ? 'none' : 'block';
+    });
+  }
+
+  // 5. ナビのアクティブリンク
+  const currentPage = location.pathname.split("/").pop();
+  document.querySelectorAll('.main-nav a').forEach(link => {
+    if(link.getAttribute('href') === currentPage){
+      link.classList.add('active');
+    }
+  });
+
 });
-
-// モバイル版 WORK メニューの開閉
-document.getElementById('mobile-work-link').addEventListener('click', function (e) {
-  e.preventDefault();
-  const types = document.getElementById('mobile-work-types');
-  types.style.display = (types.style.display === 'block') ? 'none' : 'block';
-});
-
-
-document.getElementById('work-link').addEventListener('click', function(e) {
-  e.preventDefault();
-  const types = document.getElementById('work-types');
-  types.style.display = (types.style.display === 'block') ? 'none' : 'block';
-});
-
-// WORK種類のフィルター
-// ハンバーガーメニューを押したらモバイルナビを表示
-document.getElementById('hamburger').addEventListener('click', function() {
-  const mobileNav = document.getElementById('mobile-nav');
-  mobileNav.classList.toggle('active'); // activeクラスを付け外し
-});
-
-// PC版
-document.getElementById('pc-work-link').addEventListener('click', function(e) {
-  e.preventDefault();
-  const types = document.getElementById('work-types');
-  types.style.display = (types.style.display === 'block') ? 'none' : 'block';
-});
-
-// モバイル版はそのまま
-document.getElementById('mobile-work-link').addEventListener('click', function(e) {
-  e.preventDefault();
-  const types = document.getElementById('mobile-work-types');
-  types.style.display = (types.style.display === 'block') ? 'none' : 'block';
-});
-
-
 </script>
+
 
 </body>
 
